@@ -6,15 +6,19 @@ const students = [
 
 const studentContainer = document.getElementById('students');
 
-// Загружаем рейтинги из localStorage
 const loadRatings = () => JSON.parse(localStorage.getItem('ratings')) || {};
-
-// Сохраняем рейтинги в localStorage
-const saveRatings = (ratings) => {
-    localStorage.setItem('ratings', JSON.stringify(ratings));
-};
-
+const saveRatings = (ratings) => localStorage.setItem('ratings', JSON.stringify(ratings));
 const ratings = loadRatings();
+
+const updateStats = () => {
+    const total = students.reduce((sum, name) => sum + (ratings[name] || 0), 0);
+    const leader = Object.entries(ratings).reduce((max, [name, count]) => 
+        count > (max[1] || 0) ? [name, count] : max, ['', 0]);
+    
+    document.getElementById('total').textContent = total;
+    document.getElementById('leader').textContent = 
+        leader[1] > 0 ? `${leader[0]} (${leader[1]})` : '-';
+};
 
 students.forEach(name => {
     const studentDiv = document.createElement('div');
@@ -32,13 +36,11 @@ students.forEach(name => {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "-";
-    deleteButton.classList.add('delete-button');
-    deleteButton.style.display = 'none';
+    deleteButton.classList.add('button', 'delete-button');
 
     const clearButton = document.createElement('button');
     clearButton.textContent = "C";
-    clearButton.classList.add('clear-button');
-    clearButton.style.display = 'none';
+    clearButton.classList.add('button', 'clear-button');
 
     let ratingCount = ratings[name] || 0;
 
@@ -58,9 +60,9 @@ students.forEach(name => {
         }
 
         ratingCountDisplay.textContent = `(${ratingCount})`;
-
         deleteButton.style.display = ratingCount > 0 ? 'flex' : 'none';
         clearButton.style.display = ratingCount > 0 ? 'flex' : 'none';
+        updateStats();
     };
 
     updateRatingDisplay();
@@ -100,35 +102,4 @@ students.forEach(name => {
     studentContainer.appendChild(studentDiv);
 });
 
-// Обновленный JavaScript с добавлением статистики
-// ... (остальной код остается таким же) ...
-
-// Добавляем обновление статистики
-const updateStats = () => {
-    const total = students.reduce((sum, name) => sum + (ratings[name] || 0), 0);
-    const leader = Object.entries(ratings).reduce((max, [name, count]) =>
-        count > (max[1] || 0) ? [name, count] : max, ['', 0]);
-
-    document.getElementById('total').textContent = total;
-    document.getElementById('leader').textContent =
-        leader[1] > 0 ? `${leader[0]} (${leader[1]})` : '-';
-};
-
-// Обновляем статистику при любых изменениях
-const updateRatingDisplay = () => {
-    // ... существующий код ...
-    updateStats(); // Добавляем вызов здесь
-};
-
-// Инициализируем статистику
 updateStats();
-
-// Добавляем обработчик для анимации рейтинга
-studentDiv.addEventListener('click', () => {
-    if (ratingCount < 10) {
-        const ratingDiv = document.createElement('div');
-        ratingDiv.classList.add('rating');
-        ratingDiv.style.animation = 'pop 0.3s ease-out';
-        // ... остальной код ...
-    }
-});
