@@ -110,3 +110,34 @@ body {
 
 .rating[style*="red"] { background: #ff7675; }
 .rating[style*="orange"] { background: #fdcb6e;
+
+
+/* Стили для мобильных устройств */
+@media screen and (max-width: 768px) {
+    body {
+        background-color: lightblue; /* Изменение фона для мобильных устройств */
+    }
+    .container {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Стили для планшетов и десктопов */
+@media screen and (min-width: 769px) {
+    body {
+        background-color: white; /* Изменение фона для десктопов */
+    }
+    .container {
+        padding: 20px;
+        font-size: 16px;
+    }
+}
+
+/* Стили для больших экранов */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
