@@ -1,0 +1,112 @@
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f0f2f5;
+    color: #2c3e50;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    padding: 25px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin: 0 0 15px 0;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 1.1em;
+    color: #636e72;
+}
+
+.students-list {
+    display: grid;
+    gap: 12px;
+}
+
+.student {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e0e0e0;
+}
+
+.student:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.student-name {
+    flex: 1;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.rating-container {
+    display: flex;
+    gap: 6px;
+    margin: 0 20px;
+}
+
+.rating {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.rating-count {
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #636e72;
+}
+
+.button:hover {
+    background: #4b7bec;
+    color: white;
+    transform: scale(1.1);
+}
+
+.rating[style*="red"] { background: #ff7675; }
+.rating[style*="orange"] { background: #fdcb6e;
