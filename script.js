@@ -1,9 +1,8 @@
-const students[] = {
+const students = [
     "Валиева Мадина", "Нуршымыр Салтанат", "Алмурадова Қадырбек", "Байбатчаев Алдияр",
     "Булеген Диас", "Досали Асель", "Затыбекұлы Аян", "Зиябек Гүлзина",
     "Куанышбек Қарақат", "Сайлаубек Сымбат", "Сапаркул Толғанай", "Иса Есімхан"
-};
-
+];
 
 const studentContainer = document.getElementById('students');
 
@@ -61,8 +60,8 @@ students.forEach(name => {
         }
 
         ratingCountDisplay.textContent = `(${ratingCount})`;
-        deleteButton.style.display = ratingCount > 0 ? 'flex' : 'none';
-        clearButton.style.display = ratingCount > 0 ? 'flex' : 'none';
+        deleteButton.style.display = ratingCount > 0 ? 'inline-block' : 'none';
+        clearButton.style.display = ratingCount > 0 ? 'inline-block' : 'none';
         updateStats();
     };
 
@@ -90,7 +89,7 @@ students.forEach(name => {
     clearButton.addEventListener('click', (e) => {
         e.stopPropagation();
         ratingCount = 0;
-        ratings[name] = ratingCount;
+        delete ratings[name]; // Удаляем запись из объекта
         saveRatings(ratings);
         updateRatingDisplay();
     });
